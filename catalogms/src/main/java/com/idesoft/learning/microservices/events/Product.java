@@ -1,4 +1,4 @@
-package com.idesoft.learning.microservices.entities;
+package com.idesoft.learning.microservices.events;
 
 import java.io.Serializable;
 
