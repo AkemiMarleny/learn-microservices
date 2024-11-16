@@ -2,16 +2,15 @@ package com.idesoft.learning.microservices.controllers;
 
 import com.idesoft.learning.microservices.controllers.dto.CreateProductDto;
 import com.idesoft.learning.microservices.controllers.dto.ProductCreatoDto;
+import com.idesoft.learning.microservices.controllers.dto.UpdateProductDto;
 import com.idesoft.learning.microservices.exceptions.ConflictException;
+import com.idesoft.learning.microservices.exceptions.RecordNotFoundException;
 import com.idesoft.learning.microservices.services.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -21,7 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductCreatoDto> create(@Valid @RequestBody CreateProductDto request){
+    public ResponseEntity<ProductCreatoDto> create(@Valid @RequestBody CreateProductDto request) {
 
         try {
             Long productId = productService.save(request);
@@ -30,5 +29,19 @@ public class ProductController {
         } catch (ConflictException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+    }
+
+    @PutMapping("{productId}")
+    public ResponseEntity<Void> update(@PathVariable Long productId, @Valid @RequestBody UpdateProductDto request) {
+
+        try {
+            productService.update(productId, request);
+        } catch (RecordNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        } catch (ConflictException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
