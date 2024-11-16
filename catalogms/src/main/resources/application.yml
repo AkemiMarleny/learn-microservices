@@ -6,7 +6,9 @@ spring:
     password: root
     exchange: catalog_ms.product
     product-created-queue: queue.product_created
+    product_modified-queue: queue.product_modified
     product-created-rk: product.event.created
+    product-modified-rk: product.event.modified
   datasource:
     url: ${IDS_DATASOURCE_URL}
     username: ${IDS_MYSQL_USERNAME}
