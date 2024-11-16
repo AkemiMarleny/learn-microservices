@@ -10,15 +10,27 @@ services:
     networks:
       - msnet
 
-  db:
+  catalogmsdb:
     image: mysql:8
     volumes:
-      - "./.docker/db/data:/var/lib/mysql"
+      - "./.docker/catalogms/data:/var/lib/mysql"
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: shop_db
+      MYSQL_DATABASE: catalog_db
+    networks:
+      - msnet
+
+  ordermsdb:
+    image: mysql:8
+    volumes:
+      - "./.docker/orderms/data:/var/lib/mysql"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: order_db
     networks:
       - msnet
 
