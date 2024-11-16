@@ -4,9 +4,9 @@ spring:
     port: 5672
     username: root
     password: root
-    exchange: amq.fanout
-    queue: que.catalogms
-    routingkey: keycatalogms
+    exchange: catalog_ms.product
+    product-created-queue: queue.product_created
+    product-created-rk: product.event.created
   datasource:
     url: ${IDS_DATASOURCE_URL}
     username: ${IDS_MYSQL_USERNAME}
