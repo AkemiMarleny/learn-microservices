@@ -1,7 +1,7 @@
 package com.idesoft.learning.microservices.controllers;
 
 import com.idesoft.learning.microservices.common.RabbitMqSender;
-import com.idesoft.learning.microservices.entities.Product;
+import com.idesoft.learning.microservices.events.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

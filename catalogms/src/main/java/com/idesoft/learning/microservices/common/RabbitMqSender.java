@@ -1,6 +1,6 @@
 package com.idesoft.learning.microservices.common;
 
-import com.idesoft.learning.microservices.entities.Product;
+import com.idesoft.learning.microservices.events.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

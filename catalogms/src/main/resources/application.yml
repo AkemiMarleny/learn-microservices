@@ -7,5 +7,13 @@ spring:
     exchange: amq.fanout
     queue: que.catalogms
     routingkey: keycatalogms
+  datasource:
+    url: ${IDS_DATASOURCE_URL}
+    username: ${IDS_MYSQL_USERNAME}
+    password: ${IDS_MYSQL_PASSWORD}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 server:
   port: 9090
