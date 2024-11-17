@@ -15,7 +15,7 @@ services:
     volumes:
       - "./.docker/catalogms/data:/var/lib/mysql"
     ports:
-      - "3306:3306"
+      - "9306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: catalog_db
@@ -27,7 +27,7 @@ services:
     volumes:
       - "./.docker/orderms/data:/var/lib/mysql"
     ports:
-      - "3307:3306"
+      - "9307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: order_db
