@@ -1,8 +1,8 @@
 package com.idesoft.learning.microservices.orderms.services;
 
-import com.idesoft.learning.microservices.orderms.Repositories.PurchaseOrderRepository;
 import com.idesoft.learning.microservices.orderms.commands.CreatePurchaseOrderProductCommand;
 import com.idesoft.learning.microservices.orderms.entities.PurchaseOrder;
+import com.idesoft.learning.microservices.orderms.repositories.PurchaseOrderRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
