@@ -1,6 +1,7 @@
 package com.idesoft.learning.microservices.inventoryms.adapters.repositories.dao.readonly;
 
 import com.idesoft.learning.microservices.inventoryms.domain.events.ProductCreatedEvent;
+import com.idesoft.learning.microservices.inventoryms.domain.events.ProductModifiedEvent;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -31,5 +32,11 @@ public class Product {
         product.setTotalStock(event.totalStock());
 
         return product;
+    }
+
+    public void updateWith(ProductModifiedEvent event) {
+        this.nome = event.name();
+        this.unitMeasureId = event.unitMeasureId();
+        this.totalStock = event.totalStock();
     }
 }

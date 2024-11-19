@@ -1,4 +1,4 @@
-package com.idesoft.learning.microservices.events;
+package com.idesoft.learning.microservices.inventoryms.domain.events;
 
 public record ProductModifiedEvent(
         Long id,
