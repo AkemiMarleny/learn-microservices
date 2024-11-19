@@ -70,7 +70,8 @@ public class ProductService {
         productMessage.send(new ProductModifiedEvent(
                 productToModified.getId(),
                 productToModified.getName(),
-                productToModified.getUnitMeasureId()
+                productToModified.getUnitMeasureId(),
+                productToModified.getTotalStock()
         ));
 
     }
