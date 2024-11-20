@@ -1,13 +1,17 @@
 package com.idesoft.learning.microservices.inventoryms.adapters.repositories;
 
 import com.idesoft.learning.microservices.inventoryms.adapters.repositories.dao.readonly.Product;
+import com.idesoft.learning.microservices.inventoryms.adapters.repositories.factories.ProductFactory;
 import com.idesoft.learning.microservices.inventoryms.adapters.repositories.jpa.JpaProductRepository;
 import com.idesoft.learning.microservices.inventoryms.domain.events.ProductCreatedEvent;
 import com.idesoft.learning.microservices.inventoryms.domain.events.ProductModifiedEvent;
 import com.idesoft.learning.microservices.inventoryms.domain.exceptions.RecordNotFoundException;
 import com.idesoft.learning.microservices.inventoryms.domain.ports.spi.ProductRepository;
+import com.idesoft.learning.microservices.inventoryms.domain.valuables.ProductDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -27,5 +31,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         product.updateWith(event);
 
         jpaProductRepository.save(product);
+    }
+
+    @Override
+    public Optional<ProductDetail> findById(Long productId) {
+        return jpaProductRepository.findById(productId).map(ProductFactory::productDetailFrom);
     }
 }
