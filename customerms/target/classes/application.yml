@@ -1,0 +1,18 @@
+server:
+  port: 9093
+spring:
+  application:
+    name: customerms
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: root
+  datasource:
+    url: ${IDS_DATASOURCE_URL}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+
