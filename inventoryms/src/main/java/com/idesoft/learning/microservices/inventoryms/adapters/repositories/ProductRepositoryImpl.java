@@ -26,7 +26,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void update(ProductModifiedEvent event) throws RecordNotFoundException {
-        Product product = jpaProductRepository.findById(event.id()).orElseThrow(RecordNotFoundException::new);
+        Product product = jpaProductRepository.findById(event.id()).orElseThrow(() -> new RecordNotFoundException(String.format("Warehouse with id %s not found", event.id())));
 
         product.updateWith(event);
 
