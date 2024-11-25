@@ -26,9 +26,9 @@ public class CreateProductInventoryUseCaseImpl implements CreateProductInventory
     @Override
     public Long create(CreateProductInventory payload, Long warehouseId) throws RecordNotFoundException, InvalidDataException {
 
-        WarehouseDetail warehouseDetail = warehouseRepository.findById(warehouseId).orElseThrow(InvalidDataException::new);
+        WarehouseDetail warehouseDetail = warehouseRepository.findById(warehouseId).orElseThrow(() -> new RecordNotFoundException(String.format("Warehouse with id %s not found", warehouseId)));
 
-        ProductDetail productDetail = productRepository.findById(payload.productId()).orElseThrow(RecordNotFoundException::new);
+        ProductDetail productDetail = productRepository.findById(payload.productId()).orElseThrow(() -> new InvalidDataException(String.format("Product with id %s not found", payload.productId())));
 
         return productInventoryRepository.save(new SaveProductInventory(
                         payload.productId(),

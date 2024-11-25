@@ -20,24 +20,16 @@ public class ProductInventoryController {
 
     @PostMapping
     public ResponseEntity<ProductInventoryCreatedDto> creare(@RequestBody CreateProductInventoryDto request,
-                                                             @PathVariable Long warehouseId) {
+                                                             @PathVariable Long warehouseId) throws RecordNotFoundException, InvalidDataException {
 
 
-        try {
-            Long productInventoryId = createProductInventoryUseCase.create(new CreateProductInventory(
-                            request.productId(),
-                            request.quantity()),
-                    warehouseId);
+        Long productInventoryId = createProductInventoryUseCase.create(new CreateProductInventory(
+                        request.productId(),
+                        request.quantity()),
+                warehouseId);
 
-            return new ResponseEntity<>(new ProductInventoryCreatedDto(productInventoryId), HttpStatus.CREATED);
-
-        } catch (InvalidDataException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        } catch (RecordNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
+        return new ResponseEntity<>(new ProductInventoryCreatedDto(productInventoryId), HttpStatus.CREATED);
+        
     }
 }
 
