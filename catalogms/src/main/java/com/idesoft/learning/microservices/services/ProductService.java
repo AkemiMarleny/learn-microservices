@@ -52,7 +52,7 @@ public class ProductService {
         Optional<Product> productOpt = productRepository.findById(productId);
 
         if (productOpt.isEmpty()) {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException(String.format("Product with id %s not found", productId));
         }
 
         Product productToModified = productOpt.get();
