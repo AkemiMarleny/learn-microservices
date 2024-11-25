@@ -32,7 +32,7 @@ public class ProductService {
         Long productCounter = productRepository.countByChecksum(product.getChecksum());
 
         if (productCounter > 0) {
-            throw new ConflictException();
+            throw new ConflictException("Product already exist");
         }
 
         productRepository.save(product);
@@ -62,7 +62,7 @@ public class ProductService {
         Long productCounter = productRepository.countByChecksumAndIdNotIn(productToModified.getChecksum(), Arrays.asList(productId));
 
         if (productCounter > 0) {
-            throw new ConflictException();
+            throw new ConflictException("Product already exist");
         }
 
         productRepository.save(productToModified);

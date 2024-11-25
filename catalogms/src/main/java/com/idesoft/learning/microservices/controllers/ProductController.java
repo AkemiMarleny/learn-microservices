@@ -20,15 +20,12 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductCreatoDto> create(@Valid @RequestBody CreateProductDto request) {
+    public ResponseEntity<ProductCreatoDto> create(@Valid @RequestBody CreateProductDto request) throws ConflictException {
 
-        try {
-            Long productId = productService.save(request);
+        Long productId = productService.save(request);
 
-            return new ResponseEntity<>(new ProductCreatoDto(productId), HttpStatus.CREATED);
-        } catch (ConflictException e) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
+        return new ResponseEntity<>(new ProductCreatoDto(productId), HttpStatus.CREATED);
+
     }
 
     @PutMapping("{productId}")
