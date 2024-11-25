@@ -29,16 +29,10 @@ public class ProductController {
     }
 
     @PutMapping("{productId}")
-    public ResponseEntity<Void> update(@PathVariable Long productId, @Valid @RequestBody UpdateProductDto request) {
+    public ResponseEntity<Void> update(@PathVariable Long productId, @Valid @RequestBody UpdateProductDto request) throws RecordNotFoundException, ConflictException {
 
-        try {
-            productService.update(productId, request);
-        } catch (RecordNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        productService.update(productId, request);
 
-        } catch (ConflictException e) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
