@@ -5,4 +5,6 @@ import com.idesoft.learning.microservices.inventoryms.domain.valuables.SaveProdu
 public interface ProductInventoryRepository {
 
     Long save(SaveProductInventory payload, Long warehouseId);
+
+    Long sumQuantityByProductId(Long productId);
 }
