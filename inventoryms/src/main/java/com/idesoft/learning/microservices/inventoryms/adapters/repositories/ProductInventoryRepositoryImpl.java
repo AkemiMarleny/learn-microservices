@@ -17,4 +17,9 @@ public class ProductInventoryRepositoryImpl implements ProductInventoryRepositor
     public Long save(SaveProductInventory payload, Long warehouseId) {
         return jpaProductInventoryRepository.save(ProductInventory.from(payload, warehouseId)).getId();
     }
+
+    @Override
+    public Long sumQuantityByProductId(Long productId) {
+        return jpaProductInventoryRepository.sumQuantityByProductId(productId);
+    }
 }
